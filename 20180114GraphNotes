@@ -1,0 +1,60 @@
+graph database to model cnxns
+
+https://neo4j.com/docs/developer-manual/current/cypher/
+
+Mappings:
+
+mapping: component - component
+mapping: ingredients - component
+mapping: cook_type - component
+mapping: component - meals
+
+
+a meal (node) has (relationship) ingredients (node)
+component (node) is an ingredient of (relationship) an ingredient (node) 
+
+example:
+meal 1 has pesto, green beans, black beans, squash
+garlic, herbs, oil, acid nuts are ingredients of pesto
+onion and garlic (ingredients) are ingredients of (sauteed onion and garlic)(component)
+(sauteed onion and garlic)(component) is an ingredient of black beans (component)
+
+
+Relationship notes:
+        
+component-ingredient relationship attributes:
+    - order
+    - prep (e.g. dice)
+    - time to cook
+    - proportion
+    - add/remove (boolean)
+    - is optional (boolean)
+    
+component-component relationship attributes:
+    - order
+    - proportion
+    - time to cook - this goes in the relationship between component and finished component
+    - add/remove (e.g., bouqet garni gets removed) (boolean)
+    - is optional (boolean)
+component-cook_type relationship attributes:
+    - method of cooking (e.g. roasted, rub (for marinade), mixed (for raw), tossed (raw)
+    - equipment
+    
+meal-component relationship attributes:
+    - serving suggestions
+    
+Node notes:
+- component
+    - shelf life. shelf life means how long a finished product will stay fresh. this could imply:
+        - how much time you have to eat it (if its a final product)
+        - how much time can elapse before you use it to make another component (e.g., how far in advance you can prep it.)
+    - nutrition type (e.g. startch, protein)
+    - from scratch 
+- cook type
+    - can take on values cook, raw, marinated, fermented
+    - has attributes equipment
+    
+  
+ QUESTIONS:
+ - how do we indicate when the same pan should be use throughout?
+     -perhaps through shelf life? if both have a very low shelf life, cook in two pans
