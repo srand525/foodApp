@@ -58,3 +58,5 @@ Node notes:
  QUESTIONS:
  - how do we indicate when the same pan should be use throughout?
      -perhaps through shelf life? if both have a very low shelf life, cook in two pans
+     
+ - TARA: we were talking about node duplication. there will be a lot of duplicative 'cook' nodes (remindder takes on values cooked, raw, marinated, fermented.) i think this is fine?
