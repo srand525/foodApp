@@ -38,7 +38,7 @@ CREATE
   (`36` :ingredient {name:'cabbage'}) ,
   (`37` :ingredient {name:'carrot'}) ,
   (`38` :component {name:'slaw brine'}) ,
-  (`39` :` ingredient` {name:'acid'}) ,
+  (`39` :ingredient {name:'acid'}) ,
   (`40` :ingredient {name:'water'}) ,
   (`41` :cook {type:'cooked'}) ,
   (`42` :ingredient {name:'spices'}) ,
