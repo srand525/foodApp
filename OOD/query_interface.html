@@ -28,7 +28,7 @@
         <h1>Ingredient Search</h1>
         <form class="form-ingredient_search" action="{{url_for('ingredientSearch')}}" method=post role="search">
         <label for="ingredient" class="sr-only">ingredient</label>
-        <input type="name" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient" required autofocus>
+        <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient" required autofocus>
         <button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Ingredient</button>
       </form>
       </div>
@@ -38,7 +38,7 @@
         <h1>Cooking Method Search</h1>
         <form class="form-cooking_method_search">
         <label for="cook_method" class="sr-only">Cooking Method</label>
-        <input type="name" name="cook_method" id="cook_method" class="form-control" placeholder="Cooking Method" required autofocus>
+        <input type="text" name="cook_method" id="cook_method" class="form-control" placeholder="Cooking Method" required autofocus>
          
         <button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
       </form>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>enter_recipes</title>
+  </head>
+ 
+  <body>
+ 
+<!-- 
+      <div class="jumbotron">
+        <form class="form-control", action = "{{url_for('addComponent')}}" method=post>
+        <label for="component" class="sr-only">New Component</label>
+        <input type="text" name="component" id="component" class="form-control" placeholder="New Component" required autofocus>
+         <button id="component" class="btn btn-lg btn-primary btn-block" type="submit">add_new_component</button>
+       <button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
+        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">submit</button>
+      </form>
+      </div> -->
+
+
+ <!--Ingredient Search-->
+      <div class="jumbotron">
+        <h1>Ingredient Search</h1>
+        <form class="form-control" action="{{url_for('addComponent')}}" method=post role="search">
+        <label for="component" class="sr-only">component</label>
+        <input type="text" name="component" id="component" class="form-control" placeholder="component" required autofocus>
+        <!--<button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Ingredient</button>-->
+        <button id="component" class="btn btn-lg btn-primary btn-block" type="submit">Search Recipes by Ingredient</button>
+      </form>
+      </div>
+
+       <!--Ingredient Search
+      <div class="jumbotron">
+        <h1>Ingredient Search</h1>
+        <form class="form-control" action="{{url_for('ingredientSearch')}}" method=post role="any">
+        <label for="ingredient" class="sr-only">ingredient</label>
+        <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient" required autofocus>
+        <button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Ingredient</button>
+        <button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="submit">Search Recipes by Ingredient</button>
+      </form>
+      </div> 
+         -->
+
+<!--Cooking Method Search-->
+      <div class="jumbotron">
+        <form class="form-control">
+        <label for="new_meal" class="sr-only">New Meal</label>
+        <input type="text" name="new_meal" id="new_meal" class="form-control" placeholder="New Meal" required autofocus>
+        <!--<button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
+        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">submit</button>-->
+      </form>
+      </div>
+
+  </body>
+</html>
