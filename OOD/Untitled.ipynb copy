@@ -1,0 +1,123 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from neo4j.v1 import GraphDatabase, basic_auth"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Anna\n",
+      "Bob\n",
+      "<Path start=138 end=156 size=4>\n"
+     ]
+    }
+   ],
+   "source": [
+    "driver = GraphDatabase.driver('bolt://127.0.0.1:7687', auth=basic_auth(\"neo4j\", \"neo4j\"))\n",
+    "session = driver.session()\n",
+    "\n",
+    "# Insert data\n",
+    "insert_query = '''\n",
+    "UNWIND {pairs} as pair\n",
+    "MERGE (p1:Person {name:pair[0]})\n",
+    "MERGE (p2:Person {name:pair[1]})\n",
+    "MERGE (p1)-[:KNOWS]-(p2);\n",
+    "'''\n",
+    "\n",
+    "data = [[\"Jim\",\"Mike\"],[\"Jim\",\"Billy\"],[\"Anna\",\"Jim\"],\n",
+    "          [\"Anna\",\"Mike\"],[\"Sally\",\"Anna\"],[\"Joe\",\"Sally\"],\n",
+    "          [\"Joe\",\"Bob\"],[\"Bob\",\"Sally\"]]\n",
+    "\n",
+    "session.run(insert_query, parameters={\"pairs\": data})\n",
+    "\n",
+    "# Friends of a friend\n",
+    "\n",
+    "foaf_query = '''\n",
+    "MATCH (person:Person)-[:KNOWS]-(friend)-[:KNOWS]-(foaf) \n",
+    "WHERE person.name = {name}\n",
+    "  AND NOT (person)-[:KNOWS]-(foaf)\n",
+    "RETURN foaf.name AS name\n",
+    "'''\n",
+    "\n",
+    "results = session.run(foaf_query, parameters={\"name\": \"Joe\"})\n",
+    "for record in results:\n",
+    "    print(record[\"name\"])\n",
+    "\n",
+    "\n",
+    "# Common friends\n",
+    "\n",
+    "common_friends_query = \"\"\"\n",
+    "MATCH (user:Person)-[:KNOWS]-(friend)-[:KNOWS]-(foaf:Person)\n",
+    "WHERE user.name = {user} AND foaf.name = {foaf}\n",
+    "RETURN friend.name AS friend\n",
+    "\"\"\"\n",
+    "\n",
+    "results = session.run(common_friends_query, parameters={\"user\": \"Joe\", \"foaf\": \"Sally\"})\n",
+    "for record in results:\n",
+    "    print(record[\"friend\"])\n",
+    "\n",
+    "# Connecting paths\n",
+    "\n",
+    "connecting_paths_query = \"\"\"\n",
+    "MATCH path = shortestPath((p1:Person)-[:KNOWS*..6]-(p2:Person))\n",
+    "WHERE p1.name = {name1} AND p2.name = {name2}\n",
+    "RETURN path\n",
+    "\"\"\"\n",
+    "\n",
+    "results = session.run(connecting_paths_query, parameters={\"name1\": \"Joe\", \"name2\": \"Billy\"})\n",
+    "for record in results:\n",
+    "    print (record[\"path\"])\n",
+    "\n",
+    "\n",
+    "session.close()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

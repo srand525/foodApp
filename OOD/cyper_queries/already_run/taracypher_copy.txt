@@ -39,7 +39,7 @@ CREATE
   (`42` :component {name:'toasted_nuts'}) ,
   (`43` :cook {type:'cook'}) ,
   (`44` :ingredient {name:'nuts'}) ,
-  (`45` :oil {order:'2',cook_time:'15'}) ,
+  (`45` :ingredient {name: ‘oil’})
   (`46` :ingredient {name:'cayenne'}) ,
   (`0`)-[:`cook` {how:'pan fry'}]->(`3`),
   (`0`)-[:`includes` ]->(`4`),
@@ -76,5 +76,5 @@ CREATE
   (`35`)-[:`includes` {order:'5',cook_time:'1'}]->(`41`),
   (`42`)-[:`cook` {how:'bake',temp:'325'}]->(`43`),
   (`42`)-[:`includes` {type_options:'[walnut, hazelnut, pecan, almond]',prep:'shelled',order:'1'}]->(`44`),
-  (`42`)-[:`RELATED_TO` ]->(`45`),
-  (`42`)-[:`includes` {order:'2',optional:'true'}]->(`46`)
+  (`42`)-[:`includes` {order:’2’, optional: ‘true’}]->(`45`),
+  (`42`)-[:`includes` {order:’3’,optional:'true'}]->(`46`)

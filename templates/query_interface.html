@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>mealPrep4Justice</title>
+    <p>Learn2Cook - a Meal Prep Application</p>  
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/format_css.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+ <!--Stuff-->
+    <div class="container">
+      <div class="header">
+     
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="main">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">mealPrep4Justice</h3>
+      </div>
+ 
+ <!--Ingredient Search-->
+      <div class="jumbotron">
+        <h1>Ingredient Search</h1>
+        <form class="form-ingredient_search" action="{{url_for('ingredientSearch')}}" method=post role="search">
+        <label for="ingredient" class="sr-only">ingredient</label>
+        <input type="name" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient" required autofocus>
+        <button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Ingredient</button>
+      </form>
+      </div>
+    
+<!--Cooking Method Search-->
+      <div class="jumbotron">
+        <h1>Cooking Method Search</h1>
+        <form class="form-cooking_method_search">
+        <label for="cook_method" class="sr-only">Cooking Method</label>
+        <input type="name" name="cook_method" id="cook_method" class="form-control" placeholder="Cooking Method" required autofocus>
+         
+        <button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
+      </form>
+      </div>
+
+ 
+      <footer class="footer">
+        <p>&copy; mealPrep4Justice 2018</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
