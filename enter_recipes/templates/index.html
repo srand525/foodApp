@@ -20,8 +20,8 @@
 
  <!--Ingredient Search-->
       <div class="jumbotron">
-        <h1>Ingredient Search</h1>
-        <form class="form-control" action="{{url_for('addComponent')}}" method=post role="search">
+        <h1>add component</h1>
+        <addComponent class="form-control" action="{{url_for('addComponent')}}" method=post role="search">
         <label for="component" class="sr-only">component</label>
         <input type="text" name="component" id="component" class="form-control" placeholder="component" required autofocus>
         <!--<button id="searchIngredient" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Ingredient</button>-->
@@ -41,15 +41,16 @@
       </div> 
          -->
 
-<!--Cooking Method Search-->
+<!--Cooking Method Search
       <div class="jumbotron">
         <form class="form-control">
         <label for="new_meal" class="sr-only">New Meal</label>
         <input type="text" name="new_meal" id="new_meal" class="form-control" placeholder="New Meal" required autofocus>
-        <!--<button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
-        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">submit</button>-->
+        <button id="searchCookingMethod" class="btn btn-lg btn-primary btn-block" type="button">Search Recipes by Cooking Method</button>
+        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">submit</button>
       </form>
       </div>
+      -->
 
   </body>
 </html>
