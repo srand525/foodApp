@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+
+ <!--add component-->
+    <form  action="{{url_for('addComponent')}}" method=post>
+        <input type="text" name="component" id="component" class="form-control" placeholder="Component">
+        <input type=submit value="component">
+      </form>
+
+<!--add ingredient-->
+     <form  action="{{url_for('addIngredient')}}" method=post>
+       <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient">
+       <input type=submit value="Ingredient">
+     </form>
+
+  </body>
+</html>
