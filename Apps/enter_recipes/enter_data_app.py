@@ -18,12 +18,7 @@ def connect_to_db(graph_name):
     graph_cnxn = Graph(graph_name)
     return graph_cnxn
 
-def push_new_component(component_name):
-    # my_graph = Graph('bolt://127.0.0.1:7687')
-    graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
-    merge_component_query = """MERGE (c:component {{name:'{}'}})""".format(component_name)
-    graph_cnxn.run(merge_component_query)
-    print(merge_component_query)
+
 
 # new_component = "'sauteed kale'"
 # component_includes_1 = "'sauteed onion and garlic'"
@@ -47,12 +42,45 @@ def push_new_component(component_name):
 #     print(merge_ingredient_query)
 #     # print(merge_ingredient_query)
 
+
+
+def push_new_relationship(parent_component,child_ingredient):
+    # my_graph = Graph('bolt://127.0.0.1:7687')
+    graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
+    create_relationship_query ="""match (c:component {{name:'{}'}})
+    match (i:ingredient {{name:'{}'}})
+    create p = (c) -[r:includes]->(i)""".format(parent_component,child_ingredient)
+    graph_cnxn.run(create_relationship_query)
+    print(create_relationship_query)
+
+def push_new_component(component_name):
+    # my_graph = Graph('bolt://127.0.0.1:7687')
+    graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
+    merge_component_query = """MERGE (c:component {{name:'{}'}})""".format(component_name)
+    graph_cnxn.run(merge_component_query)
+    print(merge_component_query)
+
 def push_new_ingredient(ingredient_name):
     # my_graph = Graph('bolt://127.0.0.1:7687')
     graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
     merge_ingredient_query = """MERGE (i:ingredient {{name:'{}'}})""".format(ingredient_name)
     graph_cnxn.run(merge_ingredient_query)
     print(merge_ingredient_query)
+
+@app.route("/addRelationship",methods=['GET', 'POST'])
+def addRelationship():
+    print('in add relationship function')
+    # read the posted values from the UI
+    parent_component = request.form.get('parent_component')
+    child_ingredient = request.form.get('child_ingredient')
+    #push the ingredient and components
+    push_new_component(parent_component)
+    push_new_ingredient(child_ingredient)
+    #now push the relationship
+    push_new_relationship(parent_component,child_ingredient)
+    print('i pushed your relationship')
+    a_string = parent_component + ' includes: ' + child_ingredient
+    return a_string
 
 @app.route("/addIngredient",methods=['GET', 'POST'])
 def addIngredient():

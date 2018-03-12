@@ -2,22 +2,58 @@
 <html lang="en">
   <body>
 
- <!--add component-->
- <div>
-    <form  action="{{url_for('addComponent')}}" method=post>
-        <input type="text" name="component" id="component" class="form-control" placeholder="Component">
-        <input type=submit value="component">
-      </form>
-  </div>
-<!--add ingredient-->
+<h style="font-size:24px;color:blue;"> Add components and ingredients individually (type in and press enter!)
+</h>
+  <br>
 
-<div>
-     <form  action="{{url_for('addIngredient')}}" method=post>
-       <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient">
+<br>
+  <div>
+     <form  action="{{url_for('addComponent')}}" method=post>
+         Add component: <input type="text" name="component" id="component" class="form-control" placeholder="Component">
+         <!-- <input type=submit value="component"> -->
+       </form>
+   </div>
+
+   <br>
+     <div>
+        <form  action="{{url_for('addIngredient')}}" method=post>
+            Add ingredient: <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient">
+            <!-- <input type=submit value="component"> -->
+          </form>
+      </div>
+
+
+
+<br>
+<br>
+
+
+<h style="font-size:24px;color:red;"> Add relationships (type in parent component and then what's in it and press enter!)
+</h>
+<form action="{{url_for('addRelationship')}}" method=post>
+
+  Component:  <input type="text" name="parent_component" id="parent_component" class="form-control" placeholder="Parent Component">
+  includes ingredients:
+  <input type="text" name="child_ingredient",id = "child_ingredient" class="form-control" placeholder="Child Ingredient">
+  <br>
+  <input type="submit" value="Submit">
+</form> -->
+
+
+<!-- <div>
+     <form class = "inlineForm" action="{{url_for('addIngredient')}}" method=post>
+       <input type="text" name="parent_component" id="parent_component" class="form-control" placeholder="parent_component">
+       <input type="submit" name="parent_component" value="Click me">
+       <p> insert relationship </p>
+       <input type="text" name="includes" id="child_component" class="form-control" placeholder="includes">
+       <input type="submit" name="includes" value="includes me">
        <input type=submit value="Ingredient">
      </form>
+   </h>
 
 </div>
+
+
 
   </body>
 </html>
