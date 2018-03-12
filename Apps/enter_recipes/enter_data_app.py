@@ -21,28 +21,38 @@ def connect_to_db(graph_name):
 def push_new_component(component_name):
     # my_graph = Graph('bolt://127.0.0.1:7687')
     graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
-    component_format = "'" + component_name + "'"
-    add_component_query = """CREATE (s:component {{name: {}}})""".format(component_format)
-    graph_cnxn.run(add_component_query)
-    print(add_component_query)
+    merge_component_query = """MERGE (c:component {{name:'{}'}})""".format(component_name)
+    graph_cnxn.run(merge_component_query)
+    print(merge_component_query)
 
+# new_component = "'sauteed kale'"
+# component_includes_1 = "'sauteed onion and garlic'"
+# component_includes_2 = "'kale'"
+
+#
 # def push_new_ingredient(ingredient_name):
 #     # my_graph = Graph('bolt://127.0.0.1:7687')
 #     graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
-#     ingredient_format = "'" + ingredient_name + "'"
-#     add_ingredient_query = """CREATE (i:ingredient {{name: {}}})""".format(ingredient_format)
-#     graph_cnxn.run(add_ingredient_query)
-#     print(add_ingredient_query)
+#     # ingredient_format = "'" + ingredient_name + "'"
+#     # new_component = = "'" + ingredient_name + "'"
+#     new_component = "'sauteed kale'"
+#     component_includes_1 = "'sauteed onion and garlic'"
+#     component_includes_2 = "'" + ingredient_name + "'"
+#     # add_ingredient_query = """CREATE (i:ingredient {{name: {}}})""".format(ingredient_format)
+#     # merge_ingredient_query = """MERGE (i:ingredient {{name:{}}})""".format(ingredient_format)
+#     merge_ingredient_query = """MATCH (c1:component {{name: {}}}), (c2:component {{name: {}}})
+#     ,(i:ingredient {{name:{}}}) CREATE (c1)-[:includes]->(c2) CREATE (c1)-[:includes]->(i)"""
+#     .format(new_component,component_includes_1,component_includes_2).replace("\n","")
+#     # graph_cnxn.run(relationship_query)
+#     print(merge_ingredient_query)
+#     # print(merge_ingredient_query)
 
 def push_new_ingredient(ingredient_name):
     # my_graph = Graph('bolt://127.0.0.1:7687')
     graph_cnxn = connect_to_db('bolt://127.0.0.1:7687')
-    ingredient_format = "'" + ingredient_name + "'"
-    # add_ingredient_query = """CREATE (i:ingredient {{name: {}}})""".format(ingredient_format)
-    merge_ingredient_query = """MERGE (i:ingredient {{name:{}}})""".format(ingredient_format)
+    merge_ingredient_query = """MERGE (i:ingredient {{name:'{}'}})""".format(ingredient_name)
     graph_cnxn.run(merge_ingredient_query)
     print(merge_ingredient_query)
-
 
 @app.route("/addIngredient",methods=['GET', 'POST'])
 def addIngredient():

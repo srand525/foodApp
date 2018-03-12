@@ -1,0 +1,23 @@
+formal grammar
+make a grammar of food combinations
+completeness
+
+
+ontological or semantic completeness
+
+the same ontological structure can give rise to contradictory semantic meaning
+thru fuzzy logic - logic that is context dependent.
+
+formal grammars can be represented as graphs
+
+formalize rules for this grammar and then apply to other data
+
+https://en.wikipedia.org/wiki/Computational_complexity_theory
+
+https://en.wikipedia.org/wiki/Formal_language
+
+1. i should define axiomatic rules of the grammar
+
+2. or the machine can define rules of the grammar (heuristic)
+
+use combination of these two tactics
