@@ -36,7 +36,9 @@ match (i:ingredient {name:'red_pepper'})
 match p = (c:component {name:'sofrito'}) -[i:includes]->(i2:ingredient {name:'red_pepper'})
 delete i
 
+below creates a relationship betwen sofrito and shallot 
 merge (i:ingredient {name:'shallot'})
 match (c:component {name:'sofrito'})
 match (i:ingredient {name:'shallot'})
 create p = (c) -[r:includes]->(i)
+
