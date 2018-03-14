@@ -42,3 +42,16 @@ match (c:component {name:'sofrito'})
 match (i:ingredient {name:'shallot'})
 create p = (c) -[r:includes]->(i)
 
+MATCH (n { name: 'Andres' })
+SET n.name = NULL RETURN n
+
+
+"""match (c:component {{name:'{}'}})
+    match (i:ingredient {{name:'{}'}})
+    create p = (c) -[r:includes]->(i)"""
+
+
+  merge (i:ingredient {name:'tomato'})
+  match (c:component {name:'tabouleh'})
+  match (i:ingredient {name:'tomato'})
+  create p = (c) -[r:includes {prep_type: 'diced'}] -> (i)
