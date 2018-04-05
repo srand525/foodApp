@@ -1,3 +1,11 @@
+add set query to replace existing values (e.g.,white vinegar is diced in the black bean salad)
+view associated ingredients when you do a search
+clear fields when page refreshes
+create a cook type node
+is zest a relationship attribute between lemon and a component, or is zested lemon its own ingredient?
+
+
+
 formal grammar
 make a grammar of food combinations
 completeness
