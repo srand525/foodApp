@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import code
+from py2neo import authenticate, Graph
 import py2neo
-from py2neo import Graph
 import os
 import glob
 import json
@@ -14,27 +14,32 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-def connect_to_db(graph_name):
-    graph_cnxn = Graph(graph_name)
-    return graph_cnxn
-
 def read_config():
     data = json.load(open('config.json'))
-    port_name = data["port_name"]
-    return port_name
+    # port_name = data["port_name"]
+    return data
+
+def connect_to_db():
+	params = read_config()
+	password = params['password']
+	host = params['host']
+	http_port = params['http_port']
+	user = params['user']
+	graph_cnxn = Graph(password=password,host=host,http_port=http_port,user=user)
+	return graph_cnxn
+
 
 def push_mc_relationship(parent_meal,meal_component):
-    graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
-    meal_component_query ="""match (m:meal {{name:'{}'}})
-    match (c:component {{name:'{}'}})
+    params = read_config()
+    graph_cnxn = _db()
+    meal_component_query ="""match (m:meal {{name:'{}'}}) match (c:component {{name:'{}'}})
     create p = (m) -[h:has]->(c)""".format(parent_meal,meal_component)
     graph_cnxn.run(meal_component_query)
     print(meal_component_query)
 
 def push_ci_relationship(parent_component,child_ingredient,prep_type):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     if prep_type is None:
         component_ingredient_query ="""match (c:component {{name:'{}'}})
         match (i:ingredient {{name:'{}'}})
@@ -48,7 +53,7 @@ def push_ci_relationship(parent_component,child_ingredient,prep_type):
 
 def push_cc_relationship(parent_component,child_component):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     component_component_query ="""match (c1:component {{name:'{}'}})
     match (c2:component {{name:'{}'}})
     create p = (c1) -[r:includes]->(c2)""".format(parent_component,child_component)
@@ -57,7 +62,7 @@ def push_cc_relationship(parent_component,child_component):
 
 def push_new_relationship(parent_component,child_ingredient):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     create_relationship_query ="""match (c:component {{name:'{}'}})
     match (i:ingredient {{name:'{}'}})
     create p = (c) -[r:includes]->(i)""".format(parent_component,child_ingredient)
@@ -66,28 +71,28 @@ def push_new_relationship(parent_component,child_ingredient):
 
 def push_new_meal(meal_name):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     merge_meal_query = """MERGE (m:meal {{name:'{}'}})""".format(meal_name)
     graph_cnxn.run(merge_meal_query)
     print(merge_meal_query)
 
 def push_new_component(component_name):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     merge_component_query = """MERGE (c:component {{name:'{}'}})""".format(component_name)
     graph_cnxn.run(merge_component_query)
     print(merge_component_query)
 
 def push_new_ingredient(ingredient_name):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     merge_ingredient_query = """MERGE (i:ingredient {{name:'{}'}})""".format(ingredient_name)
     graph_cnxn.run(merge_ingredient_query)
     print(merge_ingredient_query)
 
 def search_component(search_component):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     search_component_query = """MATCH (c:component {{name:'{}'}}) return c.name""".format(search_component)
     component_return_cur = graph_cnxn.run(search_component_query)
     component_return = str(component_return_cur.evaluate())
@@ -98,7 +103,7 @@ def search_component(search_component):
 
 def search_ingredient(search_ingredient):
     graph_name = read_config()
-    graph_cnxn = connect_to_db(graph_name)
+    graph_cnxn = connect_to_db()
     search_ingredient_query = """MATCH (i:ingredient {{name:'{}'}}) return i.name""".format(search_ingredient)
     ingredient_return_cur = graph_cnxn.run(search_ingredient_query)
     ingredient_return = str(ingredient_return_cur.evaluate())
