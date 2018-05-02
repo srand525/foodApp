@@ -1,0 +1,8 @@
+i want the routes to return json instead of html
+
+{ingredient:[apple,orange]}
+
+a layer between the database and the client
+
+in the route return an ajax request or a fetch
+in the ember route, it would make an ajax request to an endpoint in my service

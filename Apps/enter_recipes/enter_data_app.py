@@ -28,7 +28,6 @@ def connect_to_db():
 	graph_cnxn = Graph(password=password,host=host,http_port=http_port,user=user)
 	return graph_cnxn
 
-
 def push_mc_relationship(parent_meal,meal_component):
     params = read_config()
     graph_cnxn = _db()
