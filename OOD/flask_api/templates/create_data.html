@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<body>
+
+<u
+<b style="font-size:20px;color:blue;"> CREATE THINGS!
+</b>
+</u>
+
+<br><br>
+<!-- add components and ingredients individually -->
+<b style="font-size:18px;color:blue;"> Add components and ingredients individually (type in and press enter!)
+</b>
+<br><br>
+<div>
+   <form  action="{{url_for('addComponent')}}" method=post>
+       Add component: <input type="text" name="component" id="component" class="form-control" placeholder="Component">
+       <!-- <input type=submit value="component"> -->
+    </form>
+ </div>
+<br>
+ <div>
+    <form  action="{{url_for('addIngredient')}}" method=post>
+        Add ingredient: <input type="text" name="ingredient" id="ingredient" class="form-control" placeholder="Ingredient">
+        <!-- <input type=submit value="component"> -->
+    </form>
+  </div>
+
+<br><br>
+
+
+
+<!-- add meals with components -->
+<b style="font-size:18px;color:green;"> Add meals with components
+  (type in the mean, the components in it, and hit enter!)
+</b>
+
+<form action="{{url_for('addMCRelationship')}}" method=post>
+  Meal:  <input type="text" name="parent_meal" id="parent_meal" class="form-control" placeholder="Meal Name">
+  includes components:
+  <input type="text" name="meal_component",id = "meal_component" class="form-control" placeholder="Component in Meal">
+  <br>
+  Now hit submit!
+  <input type="submit" value="Submit">
+</form>
+
+<br><br>
+
+<!-- add components with ingredients -->
+<b style="font-size:18px;color:red;"> Add relationships between components and ingredients
+  (type in parent component, the raw ingredient in it and press enter!)
+</b>
+
+<form action="{{url_for('addCIRelationship')}}" method=post>
+  Component:  <input type="text" name="parent_component" id="parent_component" class="form-control" placeholder="Parent Component">
+  includes ingredients:
+  <input type="text" name="child_ingredient",id = "child_ingredient" class="form-control" placeholder="Child Ingredient">
+  and it's prep type is (e.g. diced, chopped):
+  <input type="text" name="prep_type",id = "prep_type" class="form-control" placeholder="Prep Type">
+  <br>
+  Now hit submit!
+  <input type="submit" value="Submit">
+</form>
+
+<br>
+
+<b style="font-size:20px;color:purple;"> Add relationships between components and components
+  (type in parent component, the raw ingredient in it and press enter!)
+</b>
+
+<form action="{{url_for('addCCRelationship')}}" method=post>
+
+  Component:  <input type="text" name="parent_component_component" id="parent_component_component" class="form-control" placeholder="Parent Component">
+  includes components:
+  <input type="text" name="child_component",id = "child_component" class="form-control" placeholder="Child Component">
+   <br>
+  Now hit submit!
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

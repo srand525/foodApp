@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<body>
+
+<u
+<b style="font-size:20px;color:blue;"> QUERY DATA!
+</b>
+</u>
+
+
+<br><br>
+<div>
+   <form  action="{{url_for('searchComponent')}}" method=post>
+       Search for component: <input type="text" name="search_component" id="search_component" class="form-control" placeholder="Search For Component">
+       <!-- <input type=submit value="component"> -->
+    </form>
+ </div>
+ <br>
+
+ <div>
+    <form  action="{{url_for('searchIngredient')}}" method=post>
+        Search for ingredient: <input type="text" name="search_ingredient" id="search_ingredient" class="form-control" placeholder="Search For Ingredient">
+        <!-- <input type=submit value="component"> -->
+     </form>
+  </div>
+
+</body>
+</html>

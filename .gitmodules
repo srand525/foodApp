@@ -1,0 +1,3 @@
+[submodule "foodApp"]
+	path = foodApp
+	url = https://github.com/srand525/foodApp
