@@ -30,13 +30,21 @@ def search_ingredient():
     ingredient_return_cur = graph_cnxn.data(search_ingredient_query)
     return ingredient_return_cur
 
+# def search_ingredient():
+#     graph_name = read_config()
+#     graph_cnxn = connect_to_db()
+#     search_ingredient_query = """match p = (n)-[:includes]-(m) where m.name = 'garlic' return p"""
+#     # search_ingredient_query = """MATCH (i:ingredient {{name:'{}'}}) return i.name""".format(search_ingredient)
+#     ingredient_return_cur = graph_cnxn.data(search_ingredient_query)
+#     return ingredient_return_cur
+
 # this function returns an object for one user
 def u(user_id):
     return {
         "type": "foods",                    # It has to have type
         "id": user_id,                      # And some unique identifier
         "attributes": {                     # Here goes actual payload.
-            "info": "data" + str(user_id),  # the only data we have for each user is "info" field
+            "info": str(user_id),  # the only data we have for each user is "info" field
         },
     }
 
