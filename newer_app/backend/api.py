@@ -82,8 +82,16 @@ def send_js(path):
     return send_from_directory('', path)
 
 
+# if __name__ == '__main__':
+#     print("use\n"
+#           "FLASK_APP=dummy.py python -m flask run\n"
+#           "instead")
+#     exit(1)
+
+
 if __name__ == '__main__':
-    print("use\n"
-          "FLASK_APP=dummy.py python -m flask run\n"
-          "instead")
-    exit(1)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )

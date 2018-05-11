@@ -1,0 +1,13 @@
+updates:
+- i have a basic
+- figured out GET operations, haven't figured out how to POST yet (push into graph)
+- jsonified relationships - ready to be input into sigma.js http://sigmajs.org/
+
+- trello board:
+https://trello.com/b/wkcjkNjc/mealprep4justice
+
+things that need to be done:
+- design of site
+- implement sigma.js
+
+ingredient_list - need to change this so the input is something grabbed from POST
